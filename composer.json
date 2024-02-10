@@ -1,0 +1,24 @@
+{
+    "name": "hector-vs/phptips004",
+    "description": "BASE PARA MICRO SISTEMA MVP COM LOGIN PELO GOOGLE E FACEBOOK",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruno Deluca",
+            "email": "brunocassiano.contato@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "1.0.*",
+        "league/oauth2-facebook": "2.0.*"
+    }
+}
