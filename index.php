@@ -1,58 +1,40 @@
 <?php
-echo 'projeto-medmur';
-// require __DIR__."/vendor/autoload.php";
+ob_start();
+session_start();
+require __DIR__ . "/vendor/autoload.php";
+require __DIR__ . "/source/Router/Router.php";
+use Source\App\Controllers\AuthController;
+use Source\App\Controllers\HomeController;
 
-// use CoffeeCode\Router\Router;
+$router = new Router();
 
-// $router = new Router(URL_BASE);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['provider'])) {
+    
+    $provider = $_POST['provider'];
+    if ($provider == "logout") {
+        AuthController::logout();
+        exit;
+    }
+    if ($provider) {
+        $_SESSION['provider'] = $provider;
+        AuthController::login($provider);
+        exit;
+    } else {
+        header("Location: /error");
+        exit;
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION['userLogin']) {
+    header('Content-Type: application/json');
+    echo HomeController::getSessionData();
+    exit; 
+}
 
-// /*
-//  * Controllers
-//  */
-// $router->namespace("Source\App");
+$router->get('', [HomeController::class, 'index']);
+$router->get('/', [HomeController::class, 'index']);
+$router->get('/login', [AuthController::class, 'login']);
+$router->get('/logout', [AuthController::class, 'logout']);
 
-// /*
-//  * WEB
-//  * home
-//  */
-// $router->group(null);
-// $router->get("/", "Web:home");
-// $router->get("/{filter}", "Web:home");
+$router->dispatch();
 
-// /*
-//  * Blog 
-//  */
-// $router->group("blog");
-// $router->get("/", "Web:blog");
-// $router->get("/{post_uri}", "Web:post");
-// $router->get("/{categoria}/{cat_uri}", "Web:category");
-
-
-// /*
-//  * Contato
-// */
-// $router->group("contato");
-// $router->get("/" , "Web:contact");
-// $router->get("/{sector}" , "Web:contact");
-// $router->get("/suporte" , "Web:support");
-
-// /*
-//  * ADMIN
-//  * Home
-// */
-// $router->group("admin");
-// $router->get("/", "Admin:home");
-
-
-// /*
-//  * ERROS
-//  */
-// $router->group("ooops");
-// $router->get("/{errcode}", "Web:error");
-
-
-// $router->dispatch();
-
-// if($router->error()) {
-//     $router->redirect("/ooops/{$router->error()}");
-// }
+ob_end_flush();

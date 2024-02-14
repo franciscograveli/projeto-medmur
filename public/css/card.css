@@ -1,0 +1,110 @@
+.card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 14px 20px rgba(34, 35, 58, 0.2);
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 25px;
+    position: relative;
+}
+
+.card h2 {
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.card .title {
+    padding: 1rem;
+    text-align: right;
+    color: #64B5F6;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.card .desc {
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    text-align: center;
+}
+
+.card .actions {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+
+
+.card-text {
+    min-height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width: 700px) {
+    .card-text {
+        display: block;
+        /* Remover qualquer layout flex ou grid */
+    }
+}
+
+
+.title-total {
+    padding: 2.5em 1.5em 1.5em 1.5em;
+}
+
+path {
+    fill: white;
+}
+
+.img-portada {
+    width: 100%;
+}
+
+.portada {
+    width: auto;
+    min-height: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* background-image: url(""); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #73D7F6;
+    cursor: pointer;
+    transition: .5s;
+
+    &:hover {
+        color: #64B5F6;
+        transform: rotate(22deg)
+    }
+}
+
+#logoutButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    /* Vermelho */
+    color: #bbb7b7;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #d32f2f;
+        /* Tom mais escuro de vermelho ao passar o mouse */
+        transform: rotate(0)
+    }
+}
